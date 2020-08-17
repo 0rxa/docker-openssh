@@ -1,5 +1,9 @@
 #!/bash
 
+ssh-keygen -t rsa -b 4096 -C "host key" -N '' -f /etc/ssh/ssh_host_rsa_key
+ssh-keygen -t ecdsa -b 4096 -C "host key" -N '' -f /etc/ssh/ssh_host_ecdsa_key
+ssh-keygen -t ed25519 -b 4096 -C "host key" -N '' -f /etc/ssh/ssh_host_ed25519_key
+
 USER_NAME=${USER_NAME:-user}
 USER_PASSWORD=${USER_PASSWORD:-1234}
 
@@ -18,6 +22,6 @@ else
 	echo "$USER_NAME:$USER_PASSWORD" | chpasswd
 fi
 
-chsh -s `which bash` "$USER_NAME"
+# chsh -s `whereis bash | awk '{print $2}'` "$USER_NAME"
 echo "$USER_NAME ALL=(ALL) ALL" >> /etc/sudoers
 echo 'PermitRootLogin yes' > /etc/ssh/sshd_config
