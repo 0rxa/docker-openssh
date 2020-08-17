@@ -1,0 +1,5 @@
+#!/bash
+
+mkdir /run/sshd
+mkdir -p /config/logs/openssh/
+/usr/sbin/sshd -D -e

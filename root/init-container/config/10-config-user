@@ -1,0 +1,23 @@
+#!/bash
+
+USER_NAME=${USER_NAME:-user}
+USER_PASSWORD=${USER_PASSWORD:-1234}
+
+echo "USER_NAME: $USER_NAME"
+echo "USER_PASSWORD: $USER_PASSWORD"
+
+[[ "$USER_NAME" != "user" ]] && \
+    mkdir -p "/home/$USER_NAME" && \
+    usermod -l "$USER_NAME" abc && \
+    groupmod -n "$USER_NAME" abc && \
+    usermod -d "/home/$USER_NAME" $USER_NAME
+
+if [ -z "$USER_PASSWORD" ]; then
+	exit 1
+else
+	echo "$USER_NAME:$USER_PASSWORD" | chpasswd
+fi
+
+chsh -s `which bash` "$USER_NAME"
+echo "$USER_NAME ALL=(ALL) ALL" >> /etc/sudoers
+echo 'PermitRootLogin yes' > /etc/ssh/sshd_config

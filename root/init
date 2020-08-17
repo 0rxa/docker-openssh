@@ -1,0 +1,23 @@
+#!/bash
+
+scripts=$(find ./init-container/config/ -type f | sort)
+number_of_scripts=$(echo "$scripts" | wc -l)
+
+iterator=1
+while [ "$iterator" -le "$number_of_scripts" ]; do
+	script_path=$(echo $scripts | head -n $iterator | tail -n 1)
+	bash $script_path
+	let iterator++
+done
+
+bash /init-container/run/openssh/run
+
+# services=$(find ./init-container/run/ -type f | sort)
+# number_of_services=$(echo "$services" | wc -l)
+# 
+# iterator=1
+# while [ "$iterator" -le "$number_of_services" ]; do
+# 	service_path=$(echo $services | head -n $iterator | tail -n 1)
+# 	(bash $service_path &)
+# 	let iterator++
+# done
