@@ -8,9 +8,11 @@ echo "USER_PASSWORD: $USER_PASSWORD"
 
 [[ "$USER_NAME" != "user" ]] && \
     mkdir -p "/home/$USER_NAME" && \
-    usermod -l "$USER_NAME" abc && \
-    groupmod -n "$USER_NAME" abc && \
-    usermod -d "/home/$USER_NAME" $USER_NAME
+    usermod -l "$USER_NAME" user && \
+    groupmod -n "$USER_NAME" user && \
+
+usermod -d "/home/$USER_NAME" $USER_NAME
+mkdir -p "/home/$USER_NAME"
 
 if [ -z "$USER_PASSWORD" ]; then
 	exit 1
