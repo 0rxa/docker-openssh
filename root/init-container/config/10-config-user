@@ -11,8 +11,8 @@ echo "USER_NAME: $USER_NAME"
 echo "USER_PASSWORD: $USER_PASSWORD"
 
 [[ "$USER_NAME" != "user" ]] && \
-    usermod -l "$USER_NAME" abc && \
-    groupmod -n "$USER_NAME" abc && \
+    usermod -l "$USER_NAME" user && \
+    groupmod -n "$USER_NAME" user && \
     
 mkdir -p "/home/$USER_NAME"
 usermod -d "/home/$USER_NAME" $USER_NAME
