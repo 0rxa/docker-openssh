@@ -16,6 +16,7 @@ echo "USER_PASSWORD: $USER_PASSWORD"
     
 mkdir -p "/home/$USER_NAME"
 usermod -d "/home/$USER_NAME" $USER_NAME
+chown "$USER_NAME.$USER_NAME" "/home/$USER_NAME"
 
 if [ -z "$USER_PASSWORD" ]; then
 	exit 1
