@@ -27,3 +27,4 @@ fi
 # chsh -s `whereis bash | awk '{print $2}'` "$USER_NAME"
 echo "$USER_NAME ALL=(ALL) ALL" >> /etc/sudoers
 echo 'PermitRootLogin yes' > /etc/ssh/sshd_config
+echo 'Subsystem sftp internal-sftp' >> /etc/ssh/sshd_config
